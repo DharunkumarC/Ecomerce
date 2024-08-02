@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>FakeStore</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="login.html">Login</a>
+                <a href="signup1.html">Sign Up</a>
+                <a href="cart.html">
+                    Cart <span id="cart-count" class="cart-count">0</span>
+                </a>
+                <a href="login.html">Log out</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="products">
+            <h2>Products</h2>
+            <div class="product-grid">
+                <!-- Example Product Entries -->
+                <div class="product">
+                    <img src="D:/Interview/images.jpeg" alt="Product 1">
+                    <h3>Watch</h3>
+                    <p>Rs.10.00</p>
+                    <button onclick="addToCart('Product 1', 10.00, 'D:/Interview/images.jpeg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/360_F_570629666_CtUxD2rvqdwHhsvTAL3edguOE5EdvRzh.jpg" alt="Product 2">
+                    <h3>Teddy</h3>
+                    <p>Rs.30.00</p>
+                    <button onclick="addToCart('Product 2', 29.99, 'D:/Interview/360_F_570629666_CtUxD2rvqdwHhsvTAL3edguOE5EdvRzh.jpg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/istockphoto-454363033-612x612.jpg" alt="Product 3">
+                    <h3>Belt</h3>
+                    <p>Rs.100.00</p>
+                    <button onclick="addToCart('Product 3', 100.00, 'D:/Interview/istockphoto-454363033-612x612.jpg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/61171992-2025725340886928-8670796091605647360-o.jpg" alt="Product 4">
+                    <h3>Shirt</h3>
+                    <p>Rs.50.00</p>
+                    <button onclick="addToCart('Product 4', 50.00, 'D:/Interview/61171992-2025725340886928-8670796091605647360-o.jpg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg" alt="Product 5">
+                    <h3>Book</h3>
+                    <p>Rs.60.00</p>
+                    <button onclick="addToCart('Product 5', 60.00, 'D:/Interview/360_F_6455661_Ptvg5iAO0DpUlt0ItlO8YewZpvU3IxwX.jpg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/best-cricket-bat-in-india-for-the-emerging-tendulkar-in-you.jpg" alt="Product 6">
+                    <h3>Bat</h3>
+                    <p>Rs.70.00</p>
+                    <button onclick="addToCart('Product 6', 70.00, 'D:/Interview/best-cricket-bat-in-india-for-the-emerging-tendulkar-in-you.jpg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/360_F_506367145_aTN8tLqtKXDYxzHQs5DH4HGsbVT9OgMn.jpg" alt="Product 7">
+                    <h3>Shoe</h3>
+                    <p>Rs.45.00</p>
+                    <button onclick="addToCart('Product 7', 45.00, 'D:/Interview/360_F_506367145_aTN8tLqtKXDYxzHQs5DH4HGsbVT9OgMn.jpg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/THUMB_Galaxy-A54-5G-Media-Assets-Thumb.jpg" alt="Product 8">
+                    <h3>Mobile</h3>
+                    <p>Rs.50.00</p>
+                    <button onclick="addToCart('Product 8',50.00, 'D:/InterviewTHUMB_Galaxy-A54-5G-Media-Assets-Thumb.jpg', this)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="D:/Interview/A_laptop.jpg" alt="Product 9">
+                    <h3>Laptop</h3>
+                    <p>Rs.50.00</p>
+                    <button onclick="addToCart('Product 9', 50.00, 'D:/Interview/A_laptop.jpg', this)">Add to Cart</button>
+                </div>
+                <!-- Add more product divs as needed -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 FakeStore. All rights reserved.</p>
+    </footer>
+    <script>
+        function updateCartCount() {
+            let cartCount = JSON.parse(localStorage.getItem('cartItems'))?.length || 0;
+            document.getElementById('cart-count').textContent = cartCount;
+        }
+
+        function addToCart(name, price, image, button) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+            // Check if item already exists
+            let itemIndex = cartItems.findIndex(item => item.name === name);
+            if (itemIndex === -1) {
+                cartItems.push({ name, price, image });
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                updateCartCount();
+                button.disabled = true;
+                button.textContent = 'Added to Cart';
+            } else {
+                alert('Item already in the cart.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updateCartCount();
+        });
+    </script>
+</body>
+
+</html>
